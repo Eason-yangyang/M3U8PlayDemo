@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,107 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="m3u8" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jd3-Jm-D7c">
+                                <rect key="frame" x="20" y="44" width="45" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MR8-JD-Ku0">
+                                <rect key="frame" x="20" y="365" width="114" height="30"/>
+                                <state key="normal" title="获取m3u8最近ts"/>
+                                <connections>
+                                    <action selector="getTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VUv-a3-lbo"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1r-fj-iol">
+                                <rect key="frame" x="20" y="403" width="15" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQn-nv-mfU">
+                                <rect key="frame" x="20" y="543" width="131" height="30"/>
+                                <state key="normal" title="播放TS web Server"/>
+                                <connections>
+                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvJ-kp-yVI"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-3t-Rmp">
+                                <rect key="frame" x="20" y="581" width="84" height="30"/>
+                                <state key="normal" title="播放TS 转码"/>
+                                <connections>
+                                    <action selector="playAfterConvert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0hh-TK-mOX"/>
+                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KB3-kP-BI9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-ME-guM">
+                                <rect key="frame" x="20" y="619" width="130" height="30"/>
+                                <state key="normal" title="播放TS http Server"/>
+                                <connections>
+                                    <action selector="playLocalServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lh4-mR-X1Y"/>
+                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ud4-dH-spT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-p3-UiU">
+                                <rect key="frame" x="20" y="657" width="139" height="30"/>
+                                <state key="normal" title="播放TS http2 Server"/>
+                                <connections>
+                                    <action selector="playLocalServer2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77D-Aj-omf"/>
+                                    <action selector="playLocalServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b9h-c9-X1k"/>
+                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fT5-by-ozg"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-G0-pEA">
+                                <rect key="frame" x="20" y="432" width="374" height="103"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vrk-p3-UiU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1gj-ZC-Rjt"/>
+                            <constraint firstItem="Jd3-Jm-D7c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4Qy-ra-gIC"/>
+                            <constraint firstItem="vrk-p3-UiU" firstAttribute="top" secondItem="fZu-ME-guM" secondAttribute="bottom" constant="8" id="6vD-qO-2px"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MR8-JD-Ku0" secondAttribute="trailing" symbolic="YES" id="9Pt-YF-rDF"/>
+                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="pZC-G0-pEA" secondAttribute="bottom" constant="8" id="Abf-2K-HDK"/>
+                            <constraint firstItem="JgC-3t-Rmp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FVG-h0-Hxu"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fZu-ME-guM" secondAttribute="trailing" symbolic="YES" id="HKd-sY-6OA"/>
+                            <constraint firstItem="MR8-JD-Ku0" firstAttribute="top" secondItem="Jd3-Jm-D7c" secondAttribute="bottom" constant="300" id="Hmr-Qw-vmp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JgC-3t-Rmp" secondAttribute="trailing" symbolic="YES" id="I2H-yd-Uyh"/>
+                            <constraint firstItem="vrk-p3-UiU" firstAttribute="top" secondItem="fZu-ME-guM" secondAttribute="bottom" constant="8" id="ICs-1n-rjl"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vrk-p3-UiU" secondAttribute="trailing" symbolic="YES" id="L00-nw-H53"/>
+                            <constraint firstItem="fZu-ME-guM" firstAttribute="top" secondItem="JgC-3t-Rmp" secondAttribute="bottom" constant="8" id="Qps-Ig-iuH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jd3-Jm-D7c" secondAttribute="trailing" symbolic="YES" id="Y61-ys-M90"/>
+                            <constraint firstItem="JgC-3t-Rmp" firstAttribute="top" secondItem="BQn-nv-mfU" secondAttribute="bottom" constant="8" id="ajX-nZ-9zd"/>
+                            <constraint firstItem="vrk-p3-UiU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="cxr-Ua-aej"/>
+                            <constraint firstItem="Jd3-Jm-D7c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ecK-Bt-32Z"/>
+                            <constraint firstItem="pZC-G0-pEA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gbn-LM-YNg"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pZC-G0-pEA" secondAttribute="trailing" constant="20" id="lb4-IZ-b1c"/>
+                            <constraint firstItem="BQn-nv-mfU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mdb-y5-tGF"/>
+                            <constraint firstItem="pZC-G0-pEA" firstAttribute="top" secondItem="J1r-fj-iol" secondAttribute="bottom" constant="8" id="mpR-el-dYC"/>
+                            <constraint firstItem="fZu-ME-guM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="phU-cX-C8G"/>
+                            <constraint firstItem="J1r-fj-iol" firstAttribute="top" secondItem="MR8-JD-Ku0" secondAttribute="bottom" constant="8" id="qMO-ba-rPs"/>
+                            <constraint firstItem="MR8-JD-Ku0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qYX-3c-QZB"/>
+                            <constraint firstItem="J1r-fj-iol" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="t9n-Zy-1KQ"/>
+                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="J1r-fj-iol" secondAttribute="bottom" constant="119" id="ufX-vB-QOv"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <outlet property="statusLabel" destination="pZC-G0-pEA" id="Rzn-NM-QIK"/>
+                        <outlet property="tsLabel" destination="J1r-fj-iol" id="vao-jk-ZiH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="85.714285714285708"/>
         </scene>
     </scenes>
 </document>
