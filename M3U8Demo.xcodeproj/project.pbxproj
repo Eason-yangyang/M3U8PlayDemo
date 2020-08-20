@@ -11,6 +11,8 @@
 		2B3881E324E6885C00BF9807 /* Stream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3881E124E6885C00BF9807 /* Stream.swift */; };
 		2B3881E424E6885C00BF9807 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B3881E224E6885C00BF9807 /* Asset.swift */; };
 		2B99696F24ED039300C6A445 /* BUM3U8ListAnalysis.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99696E24ED039300C6A445 /* BUM3U8ListAnalysis.m */; };
+		2B99697424ED481400C6A445 /* BUM3U8DownloaderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99697324ED481400C6A445 /* BUM3U8DownloaderManager.m */; };
+		2B99697724ED518A00C6A445 /* BUM3U8Downloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B99697624ED518A00C6A445 /* BUM3U8Downloader.m */; };
 		2B9C14E224E124ED0012F215 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C14E124E124ED0012F215 /* AppDelegate.m */; };
 		2B9C14E524E124ED0012F215 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C14E424E124ED0012F215 /* SceneDelegate.m */; };
 		2B9C14E824E124ED0012F215 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B9C14E724E124ED0012F215 /* ViewController.m */; };
@@ -91,6 +93,10 @@
 		2B3881E224E6885C00BF9807 /* Asset.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		2B99696D24ED039300C6A445 /* BUM3U8ListAnalysis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUM3U8ListAnalysis.h; sourceTree = "<group>"; };
 		2B99696E24ED039300C6A445 /* BUM3U8ListAnalysis.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUM3U8ListAnalysis.m; sourceTree = "<group>"; };
+		2B99697224ED481400C6A445 /* BUM3U8DownloaderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUM3U8DownloaderManager.h; sourceTree = "<group>"; };
+		2B99697324ED481400C6A445 /* BUM3U8DownloaderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUM3U8DownloaderManager.m; sourceTree = "<group>"; };
+		2B99697524ED518A00C6A445 /* BUM3U8Downloader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BUM3U8Downloader.h; sourceTree = "<group>"; };
+		2B99697624ED518A00C6A445 /* BUM3U8Downloader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BUM3U8Downloader.m; sourceTree = "<group>"; };
 		2B9C14DD24E124ED0012F215 /* M3U8Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = M3U8Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B9C14E024E124ED0012F215 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B9C14E124E124ED0012F215 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -366,6 +372,10 @@
 			children = (
 				2B99696D24ED039300C6A445 /* BUM3U8ListAnalysis.h */,
 				2B99696E24ED039300C6A445 /* BUM3U8ListAnalysis.m */,
+				2B99697224ED481400C6A445 /* BUM3U8DownloaderManager.h */,
+				2B99697324ED481400C6A445 /* BUM3U8DownloaderManager.m */,
+				2B99697524ED518A00C6A445 /* BUM3U8Downloader.h */,
+				2B99697624ED518A00C6A445 /* BUM3U8Downloader.m */,
 			);
 			path = M3U8;
 			sourceTree = "<group>";
@@ -448,20 +458,20 @@
 		2BB6691024ECE916005F102F /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				2BB6691124ECE916005F102F /* HTTPConnection.h */,
 				2BB6691224ECE916005F102F /* HTTPLogging.h */,
-				2BB6691324ECE916005F102F /* HTTPMessage.h */,
-				2BB6691424ECE916005F102F /* WebSocket.h */,
-				2BB6691524ECE916005F102F /* HTTPAuthenticationRequest.h */,
-				2BB6691624ECE916005F102F /* Responses */,
 				2BB6692124ECE916005F102F /* HTTPServer.h */,
-				2BB6692224ECE916005F102F /* HTTPMessage.m */,
-				2BB6692324ECE916005F102F /* HTTPConnection.m */,
-				2BB6692424ECE916005F102F /* WebSocket.m */,
-				2BB6692524ECE916005F102F /* HTTPResponse.h */,
-				2BB6692624ECE916005F102F /* HTTPAuthenticationRequest.m */,
-				2BB6692724ECE916005F102F /* Categories */,
 				2BB6692E24ECE916005F102F /* HTTPServer.m */,
+				2BB6691124ECE916005F102F /* HTTPConnection.h */,
+				2BB6692324ECE916005F102F /* HTTPConnection.m */,
+				2BB6691324ECE916005F102F /* HTTPMessage.h */,
+				2BB6692224ECE916005F102F /* HTTPMessage.m */,
+				2BB6691424ECE916005F102F /* WebSocket.h */,
+				2BB6692424ECE916005F102F /* WebSocket.m */,
+				2BB6691524ECE916005F102F /* HTTPAuthenticationRequest.h */,
+				2BB6692624ECE916005F102F /* HTTPAuthenticationRequest.m */,
+				2BB6692524ECE916005F102F /* HTTPResponse.h */,
+				2BB6691624ECE916005F102F /* Responses */,
+				2BB6692724ECE916005F102F /* Categories */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -470,15 +480,15 @@
 			isa = PBXGroup;
 			children = (
 				2BB6691724ECE916005F102F /* HTTPAsyncFileResponse.h */,
+				2BB6691C24ECE916005F102F /* HTTPAsyncFileResponse.m */,
+				2BB6691E24ECE916005F102F /* HTTPDataResponse.h */,
 				2BB6691824ECE916005F102F /* HTTPDataResponse.m */,
 				2BB6691924ECE916005F102F /* HTTPRedirectResponse.h */,
-				2BB6691A24ECE916005F102F /* HTTPDynamicFileResponse.m */,
-				2BB6691B24ECE916005F102F /* HTTPFileResponse.m */,
-				2BB6691C24ECE916005F102F /* HTTPAsyncFileResponse.m */,
 				2BB6691D24ECE916005F102F /* HTTPRedirectResponse.m */,
-				2BB6691E24ECE916005F102F /* HTTPDataResponse.h */,
-				2BB6691F24ECE916005F102F /* HTTPFileResponse.h */,
+				2BB6691A24ECE916005F102F /* HTTPDynamicFileResponse.m */,
 				2BB6692024ECE916005F102F /* HTTPDynamicFileResponse.h */,
+				2BB6691F24ECE916005F102F /* HTTPFileResponse.h */,
+				2BB6691B24ECE916005F102F /* HTTPFileResponse.m */,
 			);
 			path = Responses;
 			sourceTree = "<group>";
@@ -1002,6 +1012,7 @@
 				2B9C14E824E124ED0012F215 /* ViewController.m in Sources */,
 				2B3881E424E6885C00BF9807 /* Asset.swift in Sources */,
 				2BB6695424ECE916005F102F /* DDRange.m in Sources */,
+				2B99697424ED481400C6A445 /* BUM3U8DownloaderManager.m in Sources */,
 				2BB6695E24ECE916005F102F /* DDAbstractDatabaseLogger.m in Sources */,
 				2BB6695324ECE916005F102F /* DDData.m in Sources */,
 				2BDE815D24EBE6E90027E6A0 /* ffmpeg.c in Sources */,
@@ -1011,6 +1022,7 @@
 				2B3881E324E6885C00BF9807 /* Stream.swift in Sources */,
 				2BDE815E24EBE6E90027E6A0 /* ffmpeg_videotoolbox.c in Sources */,
 				2B9C14E224E124ED0012F215 /* AppDelegate.m in Sources */,
+				2B99697724ED518A00C6A445 /* BUM3U8Downloader.m in Sources */,
 				2BB6694F24ECE916005F102F /* HTTPConnection.m in Sources */,
 				2BDE815A24EBE6E90027E6A0 /* ffmpeg_opt.c in Sources */,
 				2BB6695924ECE916005F102F /* PUTResponse.m in Sources */,

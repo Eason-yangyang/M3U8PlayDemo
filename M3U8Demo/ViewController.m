@@ -23,7 +23,7 @@
 #define kM3U8URI    @"cctv6hd.m3u8"
 
 
-@interface ViewController ()<NSURLSessionDownloadDelegate,AVAssetDownloadDelegate>
+@interface ViewController ()<NSURLSessionDownloadDelegate,AVAssetDownloadDelegate,NSURLSessionDelegate>
 @property (nonatomic, strong) GCDWebServer *webServer;
 @property (nonatomic, strong) HTTPServer *httpServer;
 @property (nonatomic, strong) HTTPServer *httpServer2;
@@ -48,6 +48,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.m3u8HeaderString = [NSMutableString new];
     //创建m3u8文件
     NSFileManager *fileM = [NSFileManager defaultManager];
@@ -125,16 +126,19 @@
 - (IBAction)playTSAction:(UIButton *)sender {
     if (!_webServer) {
         _webServer = [[GCDWebServer alloc] init];
-        [_webServer addDefaultHandlerForMethod:@"GET"
-                                 requestClass:[GCDWebServerRequest class]
-                                 processBlock:^GCDWebServerResponse *(GCDWebServerRequest* request) {
-            NSString *sub = [request.URL.absoluteString substringFromIndex:7];
+        [_webServer addHandlerForMethod:@"GET" pathRegex:@".*pangle.*ts" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
+            NSString *sub = [request.URL.absoluteString lastPathComponent];
             NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:sub];
             return [GCDWebServerDataResponse responseWithData:[NSData dataWithContentsOfFile:path] contentType:[NSString stringWithFormat:@".%@",sub.pathExtension]];
         }];
-        [_webServer startWithPort:8009 bonjourName:@"BUSDK"];
+        [_webServer addHandlerForMethod:@"GET" pathRegex:@".*m3u8" requestClass:[GCDWebServerRequest class] processBlock:^GCDWebServerResponse * _Nullable(__kindof GCDWebServerRequest * _Nonnull request) {
+            NSString *sub = [request.URL.absoluteString lastPathComponent];
+            NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:sub];
+            return [GCDWebServerDataResponse responseWithData:[NSData dataWithContentsOfFile:path] contentType:[NSString stringWithFormat:@".%@",sub.pathExtension]];
+        }];
+        [_webServer startWithPort:1111 bonjourName:@""];
     }
-    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",_webServer.serverURL.absoluteString,@"bufile.m3u8"]] options:nil];
+    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/pangle/pangle/%@",_webServer.serverURL.absoluteString,@"bufile.m3u8"]] options:nil];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:liveAsset];
     [_player replaceCurrentItemWithPlayerItem:playerItem];
     [_player play];
@@ -142,11 +146,15 @@
 - (IBAction)playLocalServer:(UIButton *)sender {
     if (!_httpServer) {
         _httpServer = [[HTTPServer alloc]init];
-        [_httpServer setPort:8009];
+        [_httpServer setPort:1111];
         [_httpServer setDocumentRoot:[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]];
-        [_httpServer setDomain:@"https://pangle.BU.com"];
+        NSError *error;
+        if(![_httpServer start:&error])
+        {
+            NSLog(@"Error starting HTTP Server: %@", error);
+        }
     }
-    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",@"https://pangle.BU.com:1001",@"bufile.m3u8"]] options:nil];
+    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",@"http://localhost:1111",@"bufile.m3u8"]] options:nil];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:liveAsset];
     [_player replaceCurrentItemWithPlayerItem:playerItem];
     [_player play];
@@ -154,11 +162,16 @@
 - (IBAction)playLocalServer2:(UIButton *)sender {
     if (!_httpServer2) {
         _httpServer2 = [[HTTPServer alloc]init];
-        [_httpServer2 setPort:8009];
+        [_httpServer2 setPort:1111];
         [_httpServer2 setDocumentRoot:[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]];
         [_httpServer2 setDomain:@"https://pangle.BU2.com"];
+        NSError *error;
+        if(![_httpServer2 start:&error])
+        {
+            NSLog(@"Error starting HTTP Server: %@", error);
+        }
     }
-    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",@"https://pangle.BU2.com:1001",@"bufile.m3u8"]] options:nil];
+    AVAsset *liveAsset = [AVURLAsset URLAssetWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",@"http://localhost:1111",@"bufile.m3u8"]] options:nil];
     AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:liveAsset];
     [_player replaceCurrentItemWithPlayerItem:playerItem];
     [_player play];
@@ -227,7 +240,6 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite {
 expectedTotalBytes:(int64_t)expectedTotalBytes {
     NSLog(@"----------%s",__FUNCTION__);
 }
-
 
 
 

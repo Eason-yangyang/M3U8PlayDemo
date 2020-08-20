@@ -41,6 +41,9 @@
     NSMutableString *m3u8String = [[NSMutableString alloc]init];
     NSMutableArray *tsArr = [[NSMutableArray alloc]init];
     NSArray *arr = [dataString componentsSeparatedByString:@"\n"];
+    if (targetDuration<=tsDuration) {
+        targetDuration = tsDuration;
+    }
     NSInteger number = (NSInteger)roundf(targetDuration/tsDuration);
     for (int i = 0; i < arr.count; i++) {
         NSString *str = [arr objectAtIndex:i];

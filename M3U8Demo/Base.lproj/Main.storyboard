@@ -46,7 +46,6 @@
                                 <state key="normal" title="播放TS 转码"/>
                                 <connections>
                                     <action selector="playAfterConvert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0hh-TK-mOX"/>
-                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KB3-kP-BI9"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-ME-guM">
@@ -54,7 +53,6 @@
                                 <state key="normal" title="播放TS http Server"/>
                                 <connections>
                                     <action selector="playLocalServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lh4-mR-X1Y"/>
-                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ud4-dH-spT"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-p3-UiU">
@@ -62,8 +60,6 @@
                                 <state key="normal" title="播放TS http2 Server"/>
                                 <connections>
                                     <action selector="playLocalServer2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77D-Aj-omf"/>
-                                    <action selector="playLocalServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="b9h-c9-X1k"/>
-                                    <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fT5-by-ozg"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-G0-pEA">
