@@ -10,8 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define kBUM3U8Downloader @"BUM3U8Downloader"
-
 @class BUM3U8Downloader;
 
 @protocol BUM3U8DownloaderDelegate <NSObject>
@@ -26,8 +24,11 @@ totalBytesExpectedToWrite:(int64_t)totalBytesExpectedToWrite;
 @end
 
 @interface BUM3U8Downloader : NSObject
-@property (nonatomic, copy) NSString *name;
-@property (nonatomic, strong) NSArray *tsArray;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, strong, readonly) NSArray *tsArray;
+@property (nonatomic, assign, readonly) NSInteger downloadingNumber;
+@property (nonatomic, assign, readonly) NSInteger downloadedNumber;
+@property (nonatomic, assign, readonly) NSInteger downloadFailedNumber;
 @property (nonatomic, weak) id<BUM3U8DownloaderDelegate> delegate;
 - (instancetype)initWithDomain:(NSString *)domain name:(NSString *)name tsArray:(NSArray *)tsArray;
 - (void)downlodFirstTSFile;

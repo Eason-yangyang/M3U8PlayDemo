@@ -23,7 +23,7 @@
 
 + (void)findTs:(NSString *)dataString targetDuration:(NSInteger)targetDuration block:(AnalysisBlock)block {
     //获取单片长度
-    float tsDuration = (float)targetDuration;
+    float tsDuration = 0.00;
     NSString *regex = @"#EXT-X-TARGETDURATION:.*\n";
     NSRange range = [dataString rangeOfString:regex options:NSRegularExpressionSearch];
     if (range.location != NSNotFound) {
@@ -44,12 +44,12 @@
     if (targetDuration<=tsDuration) {
         targetDuration = tsDuration;
     }
-    NSInteger number = (NSInteger)roundf(targetDuration/tsDuration);
+    NSInteger number = tsDuration>0?(NSInteger)roundf(targetDuration/tsDuration):0;
     for (int i = 0; i < arr.count; i++) {
         NSString *str = [arr objectAtIndex:i];
         if ([str containsString:@".ts"]) {
             [tsArr addObject:str];
-        } else if ([str hasPrefix:@"#"] && ![str hasPrefix:@"#EXTINF"]) {
+        } else if ([str hasPrefix:@"#"] && ![str hasPrefix:@"#EXTINF"] && ![str hasPrefix:@"#EXT-X-ENDLIST"]) {
             [m3u8String appendString:str];
             [m3u8String appendString:@"\n"];
         }
@@ -64,7 +64,7 @@
 //        [m3u8String appendFormat:@"#EXTINF:%f,\n%@\n",tsDuration,[tsArr objectAtIndex:i]];
 //    }
 //    [m3u8String appendString:@"#EXT-X-ENDLIST"];
-    block([tsArr copy],[m3u8String copy]);
+    block([tsArr copy],[m3u8String copy],[NSString stringWithFormat:@"%f",tsDuration]);
 }
 
 @end

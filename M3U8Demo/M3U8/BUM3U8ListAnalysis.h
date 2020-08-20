@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^AnalysisBlock)(NSArray *data,NSString *m3u8HeaderString);
+typedef void(^AnalysisBlock)(NSArray *data,NSString *m3u8HeaderString,NSString *tsDuration);
 
 @interface BUM3U8ListAnalysis : NSObject
 + (void)analysisWithUrlString:(NSString *)urlString targetDuration:(NSInteger)targetDuration block:(AnalysisBlock)block;

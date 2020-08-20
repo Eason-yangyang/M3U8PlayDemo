@@ -21,9 +21,12 @@
 
 - (instancetype)initWithDomain:(NSString *)domain name:(NSString *)name tsArray:(NSArray *)tsArray {
     if (tsArray && (self = [super init])) {
-        self.domain = domain;
-        self.name = name;
-        self.tsArray = [[NSArray alloc]initWithArray:tsArray];
+        _domain = domain;
+        _name = name;
+        _tsArray = [[NSArray alloc]initWithArray:tsArray];
+        _downloadedNumber = 0;
+        _downloadingNumber = 0;
+        _downloadFailedNumber = 0;
         self.unDownloadedArray = [[NSMutableArray alloc]initWithArray:tsArray];
         return self;
     }
@@ -49,6 +52,7 @@
         NSString *ts = self.tsArray.firstObject;
         if ([self.unDownloadedArray containsObject:ts]) {
             [self.unDownloadedArray removeObject:ts];
+            _downloadingNumber++;
             dispatch_async(self.downloadQueue, ^{
                 NSURLSessionDownloadTask *task = [self.session downloadTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.domain,ts]]];
                 [task resume];
@@ -63,6 +67,7 @@
             NSString *ts = [_tsArray objectAtIndex:i];
             if ([self.unDownloadedArray containsObject:ts]) {
                 [self.unDownloadedArray removeObject:ts];
+                _downloadingNumber++;
                 dispatch_async(self.downloadQueue, ^{
                     NSURLSessionDownloadTask *task = [self.session downloadTaskWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@/%@",self.domain,ts]]];
                     [task resume];
@@ -76,6 +81,7 @@
 - (void)URLSession:(NSURLSession *)session task:(NSURLSessionTask *)task
 didCompleteWithError:(nullable NSError *)error {
     if (error) {
+        _downloadFailedNumber++;
         NSString *ts = [task.originalRequest.URL.absoluteString lastPathComponent];
         if (self.delegate && [self.delegate respondsToSelector:@selector(buM3U8downloader:tsFileDownloadFailed:)]) {
             [self.delegate buM3U8downloader:self tsFileDownloadFailed:ts];
@@ -85,8 +91,9 @@ didCompleteWithError:(nullable NSError *)error {
 
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask
 didFinishDownloadingToURL:(NSURL *)location {
+    _downloadedNumber++;
     NSString *ts = [downloadTask.originalRequest.URL.absoluteString lastPathComponent];
-    NSString *path = [[NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",kBUM3U8Downloader,self.name,ts]];
+    NSString *path = [KBUM3U8SaveMainPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",kBUM3U8Downloader,self.name,ts]];
     [[NSFileManager defaultManager]moveItemAtURL:location toURL:[NSURL fileURLWithPath:path] error:nil];
     if (self.delegate && [self.delegate respondsToSelector:@selector(buM3U8downloader:tsFileDownloadSuccess:)]) {
         [self.delegate buM3U8downloader:self tsFileDownloadSuccess:ts];

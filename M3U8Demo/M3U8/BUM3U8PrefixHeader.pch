@@ -1,0 +1,19 @@
+//
+//  BUM3U8PrefixHeader.pch
+//  M3U8Demo
+//
+//  Created by bytedance on 2020/8/20.
+//  Copyright © 2020 bytedance. All rights reserved.
+//
+
+#ifndef BUM3U8PrefixHeader_pch
+#define BUM3U8PrefixHeader_pch
+
+#define kBUM3U8Downloader   @"BUM3U8Downloader"
+#define kBUM3U8Playlist     @"playlist.m3u8"
+#define KBUM3U8SaveMainPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#endif /* BUM3U8PrefixHeader_pch */
