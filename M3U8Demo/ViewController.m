@@ -22,6 +22,9 @@
 //playlist.m3u8
 #define kM3U8Domain @"http://ivi.bupt.edu.cn/hls"
 #define kM3U8URI    @"cctv6hd.m3u8"
+//http://ivi.bupt.edu.cn/hls/cctv3hd.m3u8
+#define kM3U8Domain2 @"http://ivi.bupt.edu.cn/hls"
+#define kM3U8URI2    @"cctv3hd.m3u8"
 
 
 @interface ViewController ()<NSURLSessionDownloadDelegate,AVAssetDownloadDelegate,NSURLSessionDelegate,BUM3U8ManagerDelegate>
@@ -39,20 +42,36 @@
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (weak, nonatomic) IBOutlet UILabel *tsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *statusLabel;
-@property (nonatomic, strong) NSString *locationPath;
-@property (nonatomic, assign) NSTimeInterval startInterval;
+//@property (nonatomic, strong) NSString *locationPath;
+//@property (nonatomic, assign) NSTimeInterval startInterval;
 
 //@property (nonatomic, strong) NSMutableString *m3u8HeaderString;
+@property (weak, nonatomic) IBOutlet UILabel *tsLabel2;
+@property (weak, nonatomic) IBOutlet UILabel *statusLabel2;
 
 @property (nonatomic, strong) NSArray *tsArray;
 @property (nonatomic, copy) NSString *name;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segment;
 @end
 
 @implementation ViewController
+- (IBAction)segChange:(UISegmentedControl *)sender {
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            self.name = @"cctv3";
+            break;
+            case 1:
+            self.name = @"cctv6";
+            break;
+        default:
+            break;
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.name = @"cctv3";
 //    self.m3u8HeaderString = [NSMutableString new];
     //创建m3u8文件
 //    NSFileManager *fileM = [NSFileManager defaultManager];
@@ -75,39 +94,55 @@
 }
 - (IBAction)getTSAction:(UIButton *)sender {
     __weak typeof(self) weakSelf = self;
-    [BUM3U8ListAnalysis analysisWithUrlString:[NSString stringWithFormat:@"%@/%@",kM3U8Domain,kM3U8URI] targetDuration:15 block:^(NSArray * _Nonnull data,NSString *m3u8HeaderString,NSString *tsDuration) {
-        if (data.count) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                weakSelf.tsLabel.text = data.firstObject;
-            });
-            [weakSelf daownloadTS:data header:m3u8HeaderString dur:tsDuration];
-//            [weakSelf.m3u8HeaderString setString:m3u8HeaderString];
-//            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(20 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                [weakSelf daownloadTS:data.lastObject];
-//            });
-        }
-    }];
-}
-
-- (NSString *)findTs:(NSString *)dataString {
-    NSString *ts = nil;
-    NSArray *arr = [dataString componentsSeparatedByString:@"\n"];
-    for (NSString *str in arr) {
-        if ([str containsString:@".ts"]) {
-            ts = str;
-            break;
-        }
-    }
-    return ts;
-}
-
-- (void)daownloadTS:(NSArray *)tsArray header:(NSString *)header dur:(NSString *)dur {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        weakSelf.statusLabel.text = @"downloading";
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [BUM3U8ListAnalysis analysisWithUrlString:[NSString stringWithFormat:@"%@/%@",kM3U8Domain,kM3U8URI] targetDuration:15 block:^(NSArray * _Nonnull data,NSString *m3u8HeaderString,NSString *tsDuration) {
+            if (data.count) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakSelf.tsLabel.text = data.firstObject;
+                });
+                [weakSelf daownloadTS:data header:m3u8HeaderString dur:tsDuration name:@"cctv6"];
+            }
+        }];
     });
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [BUM3U8ListAnalysis analysisWithUrlString:[NSString stringWithFormat:@"%@/%@",kM3U8Domain2,kM3U8URI2] targetDuration:15 block:^(NSArray * _Nonnull data,NSString *m3u8HeaderString,NSString *tsDuration) {
+            if (data.count) {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    weakSelf.tsLabel2.text = data.firstObject;
+                });
+                [weakSelf daownloadTS:data header:m3u8HeaderString dur:tsDuration name:@"cctv3"];
+            }
+        }];
+    });
+}
+//
+//- (NSString *)findTs:(NSString *)dataString {
+//    NSString *ts = nil;
+//    NSArray *arr = [dataString componentsSeparatedByString:@"\n"];
+//    for (NSString *str in arr) {
+//        if ([str containsString:@".ts"]) {
+//            ts = str;
+//            break;
+//        }
+//    }
+//    return ts;
+//}
+
+- (void)daownloadTS:(NSArray *)tsArray header:(NSString *)header dur:(NSString *)dur name:(NSString *)name {
+    __weak typeof(self) weakSelf = self;
+    if ([name isEqualToString:@"cctv3"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.statusLabel.text = @"downloading";
+        });
+    }
+    if ([name isEqualToString:@"cctv6"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.statusLabel2.text = @"downloading";
+        });
+    }
+    
     [BUM3U8Manager shareLoader].delegate = self;
-    [[BUM3U8Manager shareLoader] creatNewM3U8FileDomain:kM3U8Domain name:@"cctv6" tsArray:tsArray m3u8Header:header tsDuration:dur];
+    [[BUM3U8Manager shareLoader] creatNewM3U8FileDomain:kM3U8Domain name:name tsArray:tsArray m3u8Header:header tsDuration:dur];
     
 //    _t = [[HLSDownloadTool alloc]init];
 //    [t startDownloadHLSFile:@""];
@@ -214,10 +249,17 @@
 
 
 - (void)m3u8FileCouldPlay:(NSString *)name {
-    _name = name;
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.statusLabel.text = [NSString stringWithFormat:@"%@可以播放",name];
-    });
+    __weak typeof(self) weakSelf = self;
+    if ([name isEqualToString:@"cctv3"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.statusLabel.text = [NSString stringWithFormat:@"%@可以播放",name];
+        });
+    }
+    if ([name isEqualToString:@"cctv6"]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            weakSelf.statusLabel2.text = [NSString stringWithFormat:@"%@可以播放",name];
+        });
+    }
 }
 
 

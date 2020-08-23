@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -873,6 +873,7 @@
 				2B9C14D924E124ED0012F215 /* Sources */,
 				2B9C14DA24E124ED0012F215 /* Frameworks */,
 				2B9C14DB24E124ED0012F215 /* Resources */,
+				4D6A63F57EF520FFFFFF7229 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -991,6 +992,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		4D6A63F57EF520FFFFFF7229 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-M3U8Demo/Pods-M3U8Demo-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-M3U8Demo/Pods-M3U8Demo-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-M3U8Demo/Pods-M3U8Demo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EABB5A8AA7F8EAB37AEA6127 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1239,7 +1257,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
 					"\"${PODS_ROOT}/Headers/Public/GCDWebServer\"",
 					"$(SRCROOT)/$(PRODUCT_NAME)/FFmpeg-iOS/include",
 					"${SDK_DIR}/usr/include/libxml2",
@@ -1256,7 +1273,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AFNetworking\"",
 					"-l\"GCDWebServer\"",
 					"-l\"z\"",
 					"-framework",
@@ -1288,7 +1304,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/AFNetworking\"",
 					"\"${PODS_ROOT}/Headers/Public/GCDWebServer\"",
 					"$(SRCROOT)/$(PRODUCT_NAME)/FFmpeg-iOS/include",
 					"${SDK_DIR}/usr/include/libxml2",
@@ -1305,7 +1320,6 @@
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
-					"-l\"AFNetworking\"",
 					"-l\"GCDWebServer\"",
 					"-l\"z\"",
 					"-framework",

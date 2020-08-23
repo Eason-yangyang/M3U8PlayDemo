@@ -21,9 +21,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MR8-JD-Ku0">
-                                <rect key="frame" x="20" y="365" width="114" height="30"/>
-                                <state key="normal" title="获取m3u8最近ts"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="254" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MR8-JD-Ku0">
+                                <rect key="frame" x="20" y="365" width="108" height="30"/>
+                                <state key="normal" title="并发获取两个源"/>
                                 <connections>
                                     <action selector="getTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="VUv-a3-lbo"/>
                                 </connections>
@@ -34,36 +34,70 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQn-nv-mfU">
-                                <rect key="frame" x="20" y="543" width="131" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-G0-pEA">
+                                <rect key="frame" x="20" y="432" width="374" height="37"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xR2-Jt-1to">
+                                <rect key="frame" x="20" y="477" width="15" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BQn-nv-mfU">
+                                <rect key="frame" x="20" y="577" width="131" height="30"/>
                                 <state key="normal" title="播放TS web Server"/>
                                 <connections>
                                     <action selector="playTSAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cvJ-kp-yVI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-3t-Rmp">
-                                <rect key="frame" x="20" y="581" width="84" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="253" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgC-3t-Rmp">
+                                <rect key="frame" x="20" y="615" width="84" height="30"/>
                                 <state key="normal" title="播放TS 转码"/>
                                 <connections>
                                     <action selector="playAfterConvert:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0hh-TK-mOX"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-ME-guM">
-                                <rect key="frame" x="20" y="619" width="130" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fZu-ME-guM">
+                                <rect key="frame" x="20" y="653" width="130" height="30"/>
                                 <state key="normal" title="播放TS http Server"/>
                                 <connections>
                                     <action selector="playLocalServer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Lh4-mR-X1Y"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrk-p3-UiU">
-                                <rect key="frame" x="20" y="657" width="139" height="30"/>
+                                <rect key="frame" x="20" y="691" width="139" height="50.5"/>
                                 <state key="normal" title="播放TS http2 Server"/>
                                 <connections>
                                     <action selector="playLocalServer2:" destination="BYZ-38-t0r" eventType="touchUpInside" id="77D-Aj-omf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pZC-G0-pEA">
-                                <rect key="frame" x="20" y="432" width="374" height="103"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3wY-wK-O49">
+                                <rect key="frame" x="20" y="506" width="374" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="chj-kS-nCk"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ZVf-pM-LGM">
+                                <rect key="frame" x="19" y="551" width="109" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="31" id="wFa-5f-3y9"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="cctv3"/>
+                                    <segment title="cctv6"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segChange:" destination="BYZ-38-t0r" eventType="valueChanged" id="cae-4f-NBC"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="整段回放以后再加，现在预加载第一片，播放起来以后自动去下载新片，m3u8没保存历史list，现在播完之后再点起播播的是最后一片" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="du8-2D-5tc">
+                                <rect key="frame" x="19" y="749.5" width="374" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -71,37 +105,55 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="du8-2D-5tc" secondAttribute="trailing" constant="21" id="1QD-5S-41P"/>
                             <constraint firstItem="vrk-p3-UiU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="1gj-ZC-Rjt"/>
                             <constraint firstItem="Jd3-Jm-D7c" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="4Qy-ra-gIC"/>
                             <constraint firstItem="vrk-p3-UiU" firstAttribute="top" secondItem="fZu-ME-guM" secondAttribute="bottom" constant="8" id="6vD-qO-2px"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="du8-2D-5tc" secondAttribute="bottom" constant="51.5" id="78V-JV-QxP"/>
+                            <constraint firstItem="xR2-Jt-1to" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="8QN-yd-veq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MR8-JD-Ku0" secondAttribute="trailing" symbolic="YES" id="9Pt-YF-rDF"/>
-                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="pZC-G0-pEA" secondAttribute="bottom" constant="8" id="Abf-2K-HDK"/>
+                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="pZC-G0-pEA" secondAttribute="bottom" constant="108" id="Abf-2K-HDK"/>
                             <constraint firstItem="JgC-3t-Rmp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="FVG-h0-Hxu"/>
+                            <constraint firstItem="du8-2D-5tc" firstAttribute="top" secondItem="vrk-p3-UiU" secondAttribute="bottom" constant="8" id="Fhb-UU-UJl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fZu-ME-guM" secondAttribute="trailing" symbolic="YES" id="HKd-sY-6OA"/>
                             <constraint firstItem="MR8-JD-Ku0" firstAttribute="top" secondItem="Jd3-Jm-D7c" secondAttribute="bottom" constant="300" id="Hmr-Qw-vmp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JgC-3t-Rmp" secondAttribute="trailing" symbolic="YES" id="I2H-yd-Uyh"/>
                             <constraint firstItem="vrk-p3-UiU" firstAttribute="top" secondItem="fZu-ME-guM" secondAttribute="bottom" constant="8" id="ICs-1n-rjl"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vrk-p3-UiU" secondAttribute="trailing" symbolic="YES" id="L00-nw-H53"/>
+                            <constraint firstItem="xR2-Jt-1to" firstAttribute="top" secondItem="pZC-G0-pEA" secondAttribute="bottom" constant="8" id="MEr-Rd-LAE"/>
                             <constraint firstItem="fZu-ME-guM" firstAttribute="top" secondItem="JgC-3t-Rmp" secondAttribute="bottom" constant="8" id="Qps-Ig-iuH"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="BQn-nv-mfU" secondAttribute="trailing" symbolic="YES" id="Td2-OK-SeR"/>
+                            <constraint firstItem="ZVf-pM-LGM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="VLx-qL-YiA"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Jd3-Jm-D7c" secondAttribute="trailing" symbolic="YES" id="Y61-ys-M90"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="J1r-fj-iol" secondAttribute="trailing" symbolic="YES" id="aYW-2V-MUW"/>
                             <constraint firstItem="JgC-3t-Rmp" firstAttribute="top" secondItem="BQn-nv-mfU" secondAttribute="bottom" constant="8" id="ajX-nZ-9zd"/>
                             <constraint firstItem="vrk-p3-UiU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="cxr-Ua-aej"/>
                             <constraint firstItem="Jd3-Jm-D7c" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="ecK-Bt-32Z"/>
                             <constraint firstItem="pZC-G0-pEA" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="gbn-LM-YNg"/>
+                            <constraint firstItem="ZVf-pM-LGM" firstAttribute="top" secondItem="3wY-wK-O49" secondAttribute="bottom" constant="8" id="i46-X7-tqv"/>
+                            <constraint firstItem="3wY-wK-O49" firstAttribute="top" secondItem="xR2-Jt-1to" secondAttribute="bottom" constant="8" id="imB-x7-TlD"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pZC-G0-pEA" secondAttribute="trailing" constant="20" id="lb4-IZ-b1c"/>
                             <constraint firstItem="BQn-nv-mfU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="mdb-y5-tGF"/>
                             <constraint firstItem="pZC-G0-pEA" firstAttribute="top" secondItem="J1r-fj-iol" secondAttribute="bottom" constant="8" id="mpR-el-dYC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="3wY-wK-O49" secondAttribute="trailing" constant="20" id="nuv-Jk-lQU"/>
                             <constraint firstItem="fZu-ME-guM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="phU-cX-C8G"/>
                             <constraint firstItem="J1r-fj-iol" firstAttribute="top" secondItem="MR8-JD-Ku0" secondAttribute="bottom" constant="8" id="qMO-ba-rPs"/>
                             <constraint firstItem="MR8-JD-Ku0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="qYX-3c-QZB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ZVf-pM-LGM" secondAttribute="trailing" symbolic="YES" id="sHw-Ey-Wdk"/>
                             <constraint firstItem="J1r-fj-iol" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="t9n-Zy-1KQ"/>
-                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="J1r-fj-iol" secondAttribute="bottom" constant="119" id="ufX-vB-QOv"/>
+                            <constraint firstItem="BQn-nv-mfU" firstAttribute="top" secondItem="J1r-fj-iol" secondAttribute="bottom" constant="153" id="ufX-vB-QOv"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="xR2-Jt-1to" secondAttribute="trailing" symbolic="YES" id="vvH-dc-VEt"/>
+                            <constraint firstItem="du8-2D-5tc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="19" id="wRo-fE-8DY"/>
+                            <constraint firstItem="3wY-wK-O49" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="zj5-gM-Gt0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="segment" destination="ZVf-pM-LGM" id="Dfd-5l-g0u"/>
                         <outlet property="statusLabel" destination="pZC-G0-pEA" id="Rzn-NM-QIK"/>
+                        <outlet property="statusLabel2" destination="3wY-wK-O49" id="BPb-7U-x22"/>
                         <outlet property="tsLabel" destination="J1r-fj-iol" id="vao-jk-ZiH"/>
+                        <outlet property="tsLabel2" destination="xR2-Jt-1to" id="QBM-mY-86r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

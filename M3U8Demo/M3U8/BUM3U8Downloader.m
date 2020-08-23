@@ -94,6 +94,7 @@ didFinishDownloadingToURL:(NSURL *)location {
     _downloadedNumber++;
     NSString *ts = [downloadTask.originalRequest.URL.absoluteString lastPathComponent];
     NSString *path = [KBUM3U8SaveMainPath stringByAppendingPathComponent:[NSString stringWithFormat:@"%@/%@/%@",kBUM3U8Downloader,self.name,ts]];
+    NSLog(@"缓存路径-------%@-",path);
     [[NSFileManager defaultManager]moveItemAtURL:location toURL:[NSURL fileURLWithPath:path] error:nil];
     if (self.delegate && [self.delegate respondsToSelector:@selector(buM3U8downloader:tsFileDownloadSuccess:)]) {
         [self.delegate buM3U8downloader:self tsFileDownloadSuccess:ts];

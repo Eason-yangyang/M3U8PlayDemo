@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import <BUAdSDK/BUAdSDK.h>
+#import <BUFoundation/BUFoundation.h>
 @interface AppDelegate ()
 
 @end
@@ -17,6 +18,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    NSLog(@"-------------%@",[BUAdSDKManager SDKVersion]);
+    NSLog(@"--------------%@",[BUPersistence cacheDirectory]);
     return YES;
 }
 
